@@ -10,10 +10,10 @@ public class TextureManager : MonoBehaviour
     public string prompt;
     public int steps = 50;
 
-    void Generate() {
+    public void Generate() {
         if(prompt.Length != 0) {
 
-            Debug.Log("Sending prompt: ");
+            Debug.Log($"Sending prompt: {prompt}");
 
             ImageAI imageAI = Misc.GetAddComponent<ImageAI>(gameObject);
 

@@ -17,6 +17,9 @@ public class TextureManagerEditor : Editor
     var root = new VisualElement();
     m_UXML.CloneTree(root);
 
+    TextureManager m_TextureManager = (TextureManager)target;
+    root.Q<Button>("GenerateButton").clicked += () => m_TextureManager.Generate();
+
     var foldout = new Foldout() { viewDataKey = "TextureManagerFullInspectorFoldout" , text = "Full Inspector"};
     InspectorElement.FillDefaultInspector(foldout, serializedObject, this);
     root.Add(foldout);
