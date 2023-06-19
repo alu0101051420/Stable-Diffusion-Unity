@@ -2,12 +2,23 @@
     <Style src="project://database/Assets/Editor/TextureManagerEditorStyle.uss?fileID=7433441132597879392&amp;guid=7985c80c3f9151740b7d3582a46f3b74&amp;type=3#TextureManagerEditorStyle" />
     <ui:VisualElement name="pane1" class="section" style="flex-grow: 1; width: auto; align-items: center; justify-content: center;">
         <ui:Button text="Generate Texture" display-tooltip-when-elided="true" name="GenerateButton" style="width: 250px; height: 100px; white-space: nowrap; -unity-text-align: middle-center;" />
-        <ui:Button text="Reset Texture" display-tooltip-when-elided="true" name="ResetButton" style="width: 250px; height: 100px; white-space: nowrap; -unity-text-align: middle-center;" />
-        <ui:Button text="Re-fetch Texture History" display-tooltip-when-elided="true" name="RefetchTextureHistoryButton" style="width: 250px; height: 100px; white-space: nowrap; -unity-text-align: middle-center;" />
     </ui:VisualElement>
     <ui:VisualElement name="pane2" class="section" style="flex-grow: 1; align-items: stretch; justify-content: center; width: auto;">
         <ui:TextField picking-mode="Ignore" label="Prompt" value="write your prompt here" binding-path="prompt" />
         <ui:SliderInt picking-mode="Ignore" label="Steps" value="50" high-value="200" show-input-field="true" binding-path="steps" />
         <uie:ObjectField label="Target Object" binding-path="targetObject" />
+    </ui:VisualElement>
+    <ui:VisualElement name="pane3" class="section" style="flex-grow: 1; align-items: stretch; justify-content: center; width: auto;">
+        <ui:VisualElement style="flex-direction: row; justify-content: center;">
+            <ui:VisualElement>
+                <ui:Button text="Reset Texture" display-tooltip-when-elided="true" name="ResetButton" style="width: 125px; height: 50px; white-space: nowrap; -unity-text-align: middle-center;" />
+            </ui:VisualElement>
+            <ui:VisualElement style="justify-content: center;">
+                <ui:TextField label="Version Number" value="1" style="align-self: stretch;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="align-self: center;">
+            <ui:Button text="Re-fetch Texture History" display-tooltip-when-elided="true" name="RefetchTextureHistoryButton" style="width: 250px; height: 50px; white-space: nowrap; -unity-text-align: middle-center;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
