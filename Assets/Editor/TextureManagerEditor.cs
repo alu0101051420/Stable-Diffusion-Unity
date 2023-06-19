@@ -19,6 +19,8 @@ public class TextureManagerEditor : Editor
 
     TextureManager m_TextureManager = (TextureManager)target;
     root.Q<Button>("GenerateButton").clicked += () => m_TextureManager.Generate();
+    root.Q<Button>("ResetButton").clicked += () => m_TextureManager.ResetTexture();
+    root.Q<Button>("RefetchTextureHistoryButton").clicked += () => m_TextureManager.ReloadHistory();
 
     var foldout = new Foldout() { viewDataKey = "TextureManagerFullInspectorFoldout" , text = "Full Inspector"};
     InspectorElement.FillDefaultInspector(foldout, serializedObject, this);

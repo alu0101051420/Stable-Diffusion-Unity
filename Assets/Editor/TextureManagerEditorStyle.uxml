@@ -1,7 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <Style src="project://database/Assets/Editor/TextureManagerEditorStyle.uss?fileID=7433441132597879392&amp;guid=7985c80c3f9151740b7d3582a46f3b74&amp;type=3#TextureManagerEditorStyle" />
-    <ui:Button text="Generate Texture" display-tooltip-when-elided="true" name="GenerateButton" />
-    <ui:TextField picking-mode="Ignore" label="Prompt" value="write your prompt here" binding-path="prompt" />
-    <ui:SliderInt picking-mode="Ignore" label="Steps" value="50" high-value="200" show-input-field="true" binding-path="steps" />
-    <uie:ObjectField label="Target Object" binding-path="targetObject" />
+    <ui:VisualElement name="pane1" class="section" style="flex-grow: 1; width: auto; align-items: center; justify-content: center;">
+        <ui:Button text="Generate Texture" display-tooltip-when-elided="true" name="GenerateButton" style="width: 250px; height: 100px; white-space: nowrap; -unity-text-align: middle-center;" />
+        <ui:Button text="Reset Texture" display-tooltip-when-elided="true" name="ResetButton" style="width: 250px; height: 100px; white-space: nowrap; -unity-text-align: middle-center;" />
+        <ui:Button text="Re-fetch Texture History" display-tooltip-when-elided="true" name="RefetchTextureHistoryButton" style="width: 250px; height: 100px; white-space: nowrap; -unity-text-align: middle-center;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="pane2" class="section" style="flex-grow: 1; align-items: stretch; justify-content: center; width: auto;">
+        <ui:TextField picking-mode="Ignore" label="Prompt" value="write your prompt here" binding-path="prompt" />
+        <ui:SliderInt picking-mode="Ignore" label="Steps" value="50" high-value="200" show-input-field="true" binding-path="steps" />
+        <uie:ObjectField label="Target Object" binding-path="targetObject" />
+    </ui:VisualElement>
 </ui:UXML>
