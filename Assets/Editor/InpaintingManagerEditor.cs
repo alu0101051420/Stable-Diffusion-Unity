@@ -14,11 +14,9 @@ public class InpaintingManagerEditor : Editor
     private float[] m_Rectangle = { 0f, 0f, 0.5f, 0.5f };
     private VisualElement m_CustomImageField;
 
-    public override VisualElement CreateInspectorGUI()
+ public override VisualElement CreateInspectorGUI()
     {
-        var root = new VisualElement();
-        m_CustomImageField = new VisualElement();
-        m_UXML.CloneTree(root);
+        var root = m_UXML.CloneTree();
 
         InpaintingManager inpaintingManager = (InpaintingManager)target;
 
@@ -29,61 +27,45 @@ public class InpaintingManagerEditor : Editor
         objectField.value = inpaintingManager.targetObject;
         objectField.RegisterValueChangedCallback(e => UpdateCustomImageField());
 
-    var auxTexture = inpaintingManager.targetObject != null ? GetTexture2DFromObject(inpaintingManager.targetObject) : null;
+        var auxTexture = GetTexture2DFromObject(inpaintingManager.targetObject); // Declare and initialize auxTexture
 
-        m_CustomImageField.name = "ImageField";
-        m_CustomImageField.style.backgroundImage =auxTexture;
-        root.Q<VisualElement>("pane1").Add(m_CustomImageField);
+        m_CustomImageField = root.Q<VisualElement>("ImageField");
 
-        // Create sliders for rectangle position start
-        var positionLabel = new Label("Rectangle Position Start");
-        var posXSlider = new Slider(0f, 1f);
-        posXSlider.value = 0f; // Initial X position value
-        posXSlider.RegisterValueChangedCallback(evt =>
+        var m_PosXSlider = root.Q<Slider>("PosXSlider");
+        m_PosXSlider.value = 0f; // Initial X position value
+        m_PosXSlider.RegisterValueChangedCallback(evt =>
         {
-            // Update rectangle X position based on the slider value
             float posX = evt.newValue * m_CustomImageField.resolvedStyle.width / auxTexture.width;
             m_Rectangle[0] = posX;
             UpdateCustomImageField();
         });
-        var posYSlider = new Slider(0f, 1f);
-        posYSlider.value = 0f; // Initial Y position value
-        posYSlider.RegisterValueChangedCallback(evt =>
+
+        var m_PosYSlider = root.Q<Slider>("PosYSlider");
+        m_PosYSlider.value = 0f; // Initial Y position value
+        m_PosYSlider.RegisterValueChangedCallback(evt =>
         {
-            // Update rectangle Y position based on the slider value
             float posY = evt.newValue * m_CustomImageField.resolvedStyle.height / auxTexture.height;
             m_Rectangle[1] = posY;
             UpdateCustomImageField();
         });
 
-        root.Q<VisualElement>("pane2").Add(positionLabel);
-        root.Q<VisualElement>("pane2").Add(posXSlider);
-        root.Q<VisualElement>("pane2").Add(posYSlider);
-
-        // Create sliders for rectangle position end
-        positionLabel = new Label("Rectangle Position End");
-        posXSlider = new Slider(0f, 1f);
-        posXSlider.value = 0f; // Initial X position value
-        posXSlider.RegisterValueChangedCallback(evt =>
+        var m_EndXSlider = root.Q<Slider>("EndXSlider");
+        m_EndXSlider.value = 0f; // Initial X position value
+        m_EndXSlider.RegisterValueChangedCallback(evt =>
         {
-            // Update rectangle X position based on the slider value
             float posX = evt.newValue * m_CustomImageField.resolvedStyle.width / auxTexture.width;
             m_Rectangle[2] = posX;
             UpdateCustomImageField();
         });
-        posYSlider = new Slider(0f, 1f);
-        posYSlider.value = 0f; // Initial Y position value
-        posYSlider.RegisterValueChangedCallback(evt =>
+
+        var m_EndYSlider = root.Q<Slider>("EndYSlider");
+        m_EndYSlider.value = 0f; // Initial Y position value
+        m_EndYSlider.RegisterValueChangedCallback(evt =>
         {
-            // Update rectangle Y position based on the slider value
             float posY = evt.newValue * m_CustomImageField.resolvedStyle.height / auxTexture.height;
             m_Rectangle[3] = posY;
             UpdateCustomImageField();
         });
-
-        root.Q<VisualElement>("pane2").Add(positionLabel);
-        root.Q<VisualElement>("pane2").Add(posXSlider);
-        root.Q<VisualElement>("pane2").Add(posYSlider);
 
         UpdateCustomImageField();
         return root;

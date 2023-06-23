@@ -64,7 +64,8 @@ public class ImageAI : MonoBehaviour
             cache.Reserve(cacheKey);
 
             string apiMode = aiParams.initImages != null ? "img2img" : "txt2img";
-            string apiUrl = "http://localhost:7860/sdapi/v1/" + apiMode;
+      Debug.Log(apiMode);
+      string apiUrl = "http://localhost:7860/sdapi/v1/" + apiMode;
 
             UnityWebRequest www = UnityWebRequest.PostWwwForm(apiUrl, "");
             www.SetRequestHeader("Content-Type", "application/json");

@@ -3,10 +3,22 @@
     <ui:VisualElement name="root" class="container">
         <ui:VisualElement name="pane1" class="pane centered-pane large-pane">
             <uie:ObjectField label="Target Object" binding-path="targetObject" name="TargetObject" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
+            <ui:VisualElement name="ImageField" />
         </ui:VisualElement>
-        <ui:VisualElement name="pane2" class="pane centered-pane large-pane" />
+        <ui:VisualElement name="pane2" class="pane centered-pane large-pane">
+            <ui:Label text="Rectangle Position Start" />
+            <ui:Slider value="0" low-value="0" high-value="1" name="PosXSlider" />
+            <ui:Slider value="0" low-value="0" high-value="1" name="PosYSlider" />
+            <ui:Label text="Rectangle Position End" />
+            <ui:Slider value="0" low-value="0" high-value="1" name="EndXSlider" />
+            <ui:Slider value="0" low-value="0" high-value="1" name="EndYSlider" />
+        </ui:VisualElement>
+        <ui:VisualElement name="pane5" class="pane centered-pane large-pane">
+            <ui:TextField picking-mode="Ignore" label="Prompt" value="write your prompt here" binding-path="prompt" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
+            <ui:SliderInt picking-mode="Ignore" label="Steps" value="50" high-value="200" show-input-field="true" binding-path="steps" style="flex-grow: 1; width: auto; align-items: stretch; max-width: 80%;" />
+        </ui:VisualElement>
         <ui:VisualElement name="pane3" class="pane centered-pane large-pane">
-            <ui:Button text="Button" display-tooltip-when-elided="true" name="SendInpainting" />
+            <ui:Button text="Send to Inpainting" display-tooltip-when-elided="true" name="SendInpainting" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
