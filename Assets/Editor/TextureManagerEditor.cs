@@ -20,11 +20,10 @@ public class TextureManagerEditor : Editor
     TextureManager m_TextureManager = (TextureManager)target;
     root.Q<Button>("GenerateButton").clicked += () => m_TextureManager.Generate();
     root.Q<Button>("ResetButton").clicked += () => m_TextureManager.ResetTexture();
-    root.Q<Button>("RefetchTextureHistoryButton").clicked += () => m_TextureManager.ReloadHistory();
-
-    var foldout = new Foldout() { viewDataKey = "TextureManagerFullInspectorFoldout" , text = "Full Inspector"};
-    InspectorElement.FillDefaultInspector(foldout, serializedObject, this);
-    root.Add(foldout);
+    root.Q<Button>("SaveSceneButton").clicked += () => m_TextureManager.AddSceneVersion();
+    root.Q<Button>("ResetSceneButton").clicked += () => m_TextureManager.RestoreSceneVersion();
+    root.Q<Button>("FlushObjectButton").clicked += () => m_TextureManager.FlushObjectTextures();
+    root.Q<Button>("FlushSceneButton").clicked += () => m_TextureManager.FlushSceneTextures();
 
     return root;
   }

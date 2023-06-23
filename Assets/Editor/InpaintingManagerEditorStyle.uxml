@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/Editor/InpaintingManagerEditorStyle.uss?fileID=7433441132597879392&amp;guid=f632cbfe86f4f4944a1b43b748e296e0&amp;type=3#InpaintingManagerEditorStyle" />
+    <ui:VisualElement name="root" class="container">
+        <ui:VisualElement name="pane1" class="pane centered-pane large-pane">
+            <uie:ObjectField label="Target Object" binding-path="targetObject" name="TargetObject" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="pane2" class="pane centered-pane large-pane" />
+        <ui:VisualElement name="pane3" class="pane centered-pane large-pane">
+            <ui:Button text="Button" display-tooltip-when-elided="true" name="SendInpainting" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
