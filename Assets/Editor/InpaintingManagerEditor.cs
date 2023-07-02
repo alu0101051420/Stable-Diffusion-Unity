@@ -27,7 +27,8 @@ public class InpaintingManagerEditor : Editor
         objectField.value = inpaintingManager.targetObject;
         objectField.RegisterValueChangedCallback(e => UpdateCustomImageField());
 
-        var auxTexture = GetTexture2DFromObject(inpaintingManager.targetObject); // Declare and initialize auxTexture
+        if(inpaintingManager.targetObject != null) {
+            var auxTexture = GetTexture2DFromObject(inpaintingManager.targetObject); // Declare and initialize auxTexture
 
         m_CustomImageField = root.Q<VisualElement>("ImageField");
 
@@ -68,6 +69,7 @@ public class InpaintingManagerEditor : Editor
         });
 
         UpdateCustomImageField();
+        }
         return root;
     }
 
@@ -84,6 +86,7 @@ public class InpaintingManagerEditor : Editor
 
 private void UpdateCustomImageField()
 {
+    if(m_CustomImageField != null){
     InpaintingManager inpaintingManager = (InpaintingManager)target;
     var auxTexture = inpaintingManager.targetObject != null ? GetTexture2DFromObject(inpaintingManager.targetObject) : null;
 
@@ -132,7 +135,7 @@ private void UpdateCustomImageField()
         m_CustomImageField.style.width = 0;
         m_CustomImageField.style.height = 0;
     }
-    m_CustomImageField.MarkDirtyRepaint();
+    m_CustomImageField.MarkDirtyRepaint(); }
 }
 
 }

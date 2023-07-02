@@ -1,0 +1,29 @@
+{
+  "Player": [
+    "MaterialVersions\\2DShowcase\\Player\\Texture_0.png",
+    "MaterialVersions\\2DShowcase\\Player\\Texture_1.png",
+    "MaterialVersions\\2DShowcase\\Player\\Texture_2.png"
+  ],
+  "Scroll2": [
+    "MaterialVersions\\2DShowcase\\Scroll2\\Texture_0.png",
+    "MaterialVersions\\2DShowcase\\Scroll2\\Texture_1.png",
+    "MaterialVersions\\2DShowcase\\Scroll2\\Texture_2.png",
+    "MaterialVersions\\2DShowcase\\Scroll2\\Texture_3.png",
+    "MaterialVersions\\2DShowcase\\Scroll2\\Texture_4.png",
+    "MaterialVersions\\2DShowcase\\Scroll2\\Texture_5.png"
+  ],
+  "Scroll1": [
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_0.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_1.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_2.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_3.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_4.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_5.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_6.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_7.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_8.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_9.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_10.png",
+    "MaterialVersions\\2DShowcase\\Scroll1\\Texture_11.png"
+  ]
+}

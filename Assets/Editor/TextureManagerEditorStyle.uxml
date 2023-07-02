@@ -6,7 +6,11 @@
         </ui:VisualElement>
         <ui:VisualElement name="pane2" class="pane centered-pane large-pane">
             <ui:TextField picking-mode="Ignore" label="Prompt" value="write your prompt here" binding-path="prompt" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
+            <ui:TextField picking-mode="Ignore" label="Negative Prompt" value="write your prompt here" binding-path="negativePrompt" name="negativePrompt" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
             <ui:SliderInt picking-mode="Ignore" label="Steps" value="50" high-value="200" show-input-field="true" binding-path="steps" style="flex-grow: 1; width: auto; align-items: stretch; max-width: 80%;" />
+            <ui:IntegerField label="Size X" value="1" binding-path="sizeX" name="SizeX" style="flex-grow: 1; width: 80%; flex-direction: row; align-items: center; min-width: 80%; max-width: 80%;" />
+            <ui:IntegerField label="Size Y" value="1" binding-path="sizeY" name="sizeY" style="flex-grow: 1; width: 80%; flex-direction: row; align-items: center; min-width: 80%; max-width: 80%;" />
+            <ui:Toggle label="Remove Background" name="removeBg" binding-path="removeBg" style="justify-content: space-between; align-self: center; align-items: center; flex-direction: row;" />
             <uie:ObjectField label="Target Object" binding-path="targetObject" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
         </ui:VisualElement>
         <ui:VisualElement name="pane3" class="pane centered-pane large-pane">

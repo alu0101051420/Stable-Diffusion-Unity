@@ -1,0 +1,30 @@
+{
+  "platformer": [
+    {
+      "Key": "Player",
+      "Value": "Texture_0.png"
+    },
+    {
+      "Key": "Scroll2",
+      "Value": "Texture_0.png"
+    },
+    {
+      "Key": "Scroll1",
+      "Value": "Texture_0.png"
+    }
+  ],
+  "alien": [
+    {
+      "Key": "Player",
+      "Value": "Texture_2.png"
+    },
+    {
+      "Key": "Scroll2",
+      "Value": "Texture_5.png"
+    },
+    {
+      "Key": "Scroll1",
+      "Value": "Texture_11.png"
+    }
+  ]
+}
