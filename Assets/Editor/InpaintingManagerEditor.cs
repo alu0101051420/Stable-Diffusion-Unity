@@ -21,6 +21,7 @@ public class InpaintingManagerEditor : Editor
         InpaintingManager inpaintingManager = (InpaintingManager)target;
 
         root.Q<Button>("SendInpainting").clicked += () => inpaintingManager.Generate(m_Rectangle);
+        root.Q<Button>("SendImg2Img").clicked += () => inpaintingManager.GenerateImg2Img();
 
         var objectField = root.Q<ObjectField>("TargetObject");
         objectField.objectType = typeof(GameObject);
@@ -75,14 +76,27 @@ public class InpaintingManagerEditor : Editor
 
     private Texture2D GetTexture2DFromObject(GameObject gameObject)
     {
-        Renderer renderer = gameObject.GetComponent<Renderer>();
-        if (renderer != null && renderer.sharedMaterial != null)
-        {
-            Material material = renderer.sharedMaterial;
-            return (Texture2D)material.mainTexture;
-        }
-        return null;
+    if (SpriteOrTexture(gameObject))
+    {
+      SpriteRenderer renderer = gameObject.GetComponent<SpriteRenderer>();
+      return renderer.sprite.texture as Texture2D;
     }
+    else
+    {
+      Renderer renderer = gameObject.GetComponent<Renderer>();
+      return renderer.sharedMaterial.mainTexture as Texture2D;
+    }
+    }
+
+      private bool SpriteOrTexture(GameObject obj)
+  {
+    SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
+    if (renderer == null)
+    {
+      return false;
+    }
+    else return true;
+  }
 
 private void UpdateCustomImageField()
 {

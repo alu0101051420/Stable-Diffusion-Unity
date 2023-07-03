@@ -35,64 +35,54 @@ public class TextureManager : MonoBehaviour
       Debug.Log($"Negative prompt: {negativePrompt}");
       Debug.Log($"Size: {sizeX}, {sizeY}");
       ImageAI imageAI = Misc.GetAddComponent<ImageAI>(gameObject);
-      SpriteRenderer spriteRenderer = targetObject.GetComponent<SpriteRenderer>();
 
-      if (spriteRenderer == null)
-      {
-        Renderer renderer = targetObject.GetComponent<Renderer>();
-        if (renderer != null)
-        {
-          StartCoroutine(
-              imageAI.GetImage(prompt, (Texture2D texture) =>
-              {
-                try
-                {
-                  Debug.Log("Done.");
-
-                  Material tempMaterial = new Material(renderer.sharedMaterial);
-                  tempMaterial.mainTexture = texture;
-                  renderer.sharedMaterial = tempMaterial;
-                  StoreNewTexture(texture);
-                }
-                catch (System.Exception e)
-                {
-                  Debug.LogException(e);
-                }
-              },
-              useCache: false,
-              width: sizeX, height: sizeY,
-              steps: steps
-          ));
-        }
-      }
-      else
-      {
-        StartCoroutine(
-            imageAI.GetImage(prompt, (Texture2D texture) =>
+      StartCoroutine(
+          imageAI.GetImage(prompt, (Texture2D texture) =>
+          {
+            try
             {
-              try
+              Debug.Log("Done.");
+
+              if (SpriteOrTexture(targetObject))
               {
-                Debug.Log("Done.");
-                if(removeBg) {
-                Color fillColor = new Color(0f, 0f, 0.2f, 0f);
-                ImageFloodFill.FillFromSides(texture, fillColor,
-                    threshold: 0.075f, contour: 5f, bottomAlignImage: true);
+                if (removeBg)
+                {
+                  Color fillColor = new Color(0f, 0f, 0.2f, 0f);
+                  ImageFloodFill.FillFromSides(texture, fillColor,
+                      threshold: 0.075f, contour: 5f, bottomAlignImage: true);
                 }
-                spriteRenderer.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
-                StoreNewTexture(texture);
+                targetObject.GetComponent<SpriteRenderer>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
               }
-              catch (System.Exception e)
+              else
               {
-                Debug.LogException(e);
+                Material tempMaterial = new Material(targetObject.GetComponent<Renderer>().sharedMaterial);
+                tempMaterial.mainTexture = texture;
+                targetObject.GetComponent<Renderer>().sharedMaterial = tempMaterial;
+
               }
-            },
-            useCache: false,
-            width: sizeX, height: sizeY,
-            steps: steps,
-            negativePrompt: negativePrompt
-        ));
-      }
+
+              StoreNewTexture(texture);
+            }
+            catch (System.Exception e)
+            {
+              Debug.LogException(e);
+            }
+          },
+          useCache: false,
+          width: sizeX, height: sizeY,
+          steps: steps,
+          negativePrompt: negativePrompt
+      ));
     }
+  }
+  private bool SpriteOrTexture(GameObject obj)
+  {
+    SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
+    if (renderer == null)
+    {
+      return false;
+    }
+    else return true;
   }
 
   public void ResetTexture()

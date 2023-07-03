@@ -10,6 +10,7 @@ public class InpaintingManager : MonoBehaviour
   public GameObject targetObject;
   public string prompt;
   public int steps = 50;
+  public float denoisingStrength = 0;
 
   public List<Rect> rectangles = new List<Rect>();
 
@@ -24,13 +25,11 @@ public class InpaintingManager : MonoBehaviour
   {
     if (prompt.Length != 0)
     {
-      // generate mask image, potentially save it
       Debug.Log($"Sending prompt: {prompt}");
 
       ImageAI imageAI = Misc.GetAddComponent<ImageAI>(gameObject);
 
-      Renderer renderer = targetObject.GetComponent<Renderer>();
-      Texture2D originalTexture = renderer.sharedMaterial.mainTexture as Texture2D;
+      Texture2D originalTexture = getOriginalTexture(targetObject);
       int textureWidth = originalTexture.width;
       int textureHeight = originalTexture.height;
 
@@ -83,24 +82,109 @@ public class InpaintingManager : MonoBehaviour
 
       versioningManager.AddTextureMask(targetObject, rectangleTexture);
 
-      StartCoroutine(
-          imageAI.GetImage(prompt, (Texture2D texture) =>
+      StartCoroutine(imageAI.GetImage(prompt, (Texture2D texture) =>
+      {
+        try
+        {
+          Debug.Log("Done.");
+
+          if (SpriteOrTexture(targetObject))
           {
-            Debug.Log("Done.");
-            Renderer renderer = targetObject.GetComponent<Renderer>();
-            Material tempMaterial = new Material(renderer.sharedMaterial);
+            targetObject.GetComponent<SpriteRenderer>().sprite =
+              Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
+          }
+          else
+          {
+            Material tempMaterial = new Material(targetObject.GetComponent<Renderer>().sharedMaterial);
             tempMaterial.mainTexture = texture;
-            renderer.sharedMaterial = tempMaterial;
-            StoreNewTexture(texture);
-          },
-          useCache: false,
-          image: originalTexture.EncodeToPNG(),
-          mask: rectangleTexture.EncodeToPNG(),
-          denoisingStrength: 0.8f
+            targetObject.GetComponent<Renderer>().sharedMaterial = tempMaterial;
+
+          }
+
+          StoreNewTexture(texture);
+        }
+        catch (System.Exception e)
+        {
+          Debug.LogException(e);
+        }
+      },
+            useCache: false,
+            steps: steps,
+            denoisingStrength: denoisingStrength,
+            image: originalTexture.EncodeToPNG(),
+            mask: rectangleTexture.EncodeToPNG()
       ));
     }
   }
 
+  public void GenerateImg2Img()
+  {
+    if (prompt.Length != 0)
+    {
+      // generate mask image, potentially save it
+      Debug.Log($"Sending prompt: {prompt}");
+
+      ImageAI imageAI = Misc.GetAddComponent<ImageAI>(gameObject);
+
+      Texture2D originalTexture = getOriginalTexture(targetObject);
+
+
+      StartCoroutine(imageAI.GetImage(prompt, (Texture2D texture) =>
+      {
+        try
+        {
+          Debug.Log("Done.");
+
+          if (SpriteOrTexture(targetObject))
+          {
+            targetObject.GetComponent<SpriteRenderer>().sprite =
+              Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
+          }
+          else
+          {
+            Material tempMaterial = new Material(targetObject.GetComponent<Renderer>().sharedMaterial);
+            tempMaterial.mainTexture = texture;
+            targetObject.GetComponent<Renderer>().sharedMaterial = tempMaterial;
+
+          }
+
+          StoreNewTexture(texture);
+        }
+        catch (System.Exception e)
+        {
+          Debug.LogException(e);
+        }
+      },
+      useCache: false,
+      steps: steps,
+      denoisingStrength: denoisingStrength,
+      image: originalTexture.EncodeToPNG()
+      ));
+    }
+  }
+
+  private Texture2D getOriginalTexture(GameObject obj)
+  {
+    if (SpriteOrTexture(obj))
+    {
+      SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
+      return renderer.sprite.texture as Texture2D;
+    }
+    else
+    {
+      Renderer renderer = obj.GetComponent<Renderer>();
+      return renderer.sharedMaterial.mainTexture as Texture2D;
+    }
+  }
+  private bool SpriteOrTexture(GameObject obj)
+  {
+    SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
+    if (renderer == null)
+    {
+      return false;
+    }
+    else return true;
+  }
   private void StoreNewTexture(Texture2D texture)
   {
     versioningManager.AddTextureVersion(targetObject, texture);

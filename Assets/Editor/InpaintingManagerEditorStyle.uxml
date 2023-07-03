@@ -5,6 +5,11 @@
             <uie:ObjectField label="Target Object" binding-path="targetObject" name="TargetObject" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
             <ui:VisualElement name="ImageField" />
         </ui:VisualElement>
+        <ui:VisualElement name="pane1" class="pane centered-pane large-pane">
+            <ui:TextField picking-mode="Ignore" label="Prompt" value="write your prompt here" binding-path="prompt" name="Img2ImgPrompt" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
+            <ui:FloatField label="Denoising Strength" value="42.2" name="denoisingStrength" binding-path="denoisingStrength" style="align-self: auto; align-items: center;" />
+            <ui:Button text="Send to Inpainting" display-tooltip-when-elided="true" name="SendImg2Img" />
+        </ui:VisualElement>
         <ui:VisualElement name="pane2" class="pane centered-pane large-pane">
             <ui:Label text="Rectangle Position Start" />
             <ui:Slider value="0" low-value="0" high-value="1" name="PosXSlider" />
