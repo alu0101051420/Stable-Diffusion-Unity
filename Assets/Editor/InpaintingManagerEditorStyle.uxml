@@ -2,13 +2,13 @@
     <Style src="project://database/Assets/Editor/InpaintingManagerEditorStyle.uss?fileID=7433441132597879392&amp;guid=f632cbfe86f4f4944a1b43b748e296e0&amp;type=3#InpaintingManagerEditorStyle" />
     <ui:VisualElement name="root" class="container">
         <ui:VisualElement name="pane1" class="pane centered-pane large-pane">
-            <uie:ObjectField label="Target Object" binding-path="targetObject" name="TargetObject" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
-            <ui:VisualElement name="ImageField" />
-        </ui:VisualElement>
-        <ui:VisualElement name="pane1" class="pane centered-pane large-pane">
             <ui:TextField picking-mode="Ignore" label="Prompt" value="write your prompt here" binding-path="prompt" name="Img2ImgPrompt" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
             <ui:FloatField label="Denoising Strength" value="42.2" name="denoisingStrength" binding-path="denoisingStrength" style="align-self: auto; align-items: center;" />
-            <ui:Button text="Send to Inpainting" display-tooltip-when-elided="true" name="SendImg2Img" />
+            <ui:Button text="Send to Img2Img" display-tooltip-when-elided="true" name="SendImg2Img" />
+        </ui:VisualElement>
+        <ui:VisualElement name="pane1" class="pane centered-pane large-pane">
+            <uie:ObjectField label="Target Object" binding-path="targetObject" name="TargetObject" style="flex-grow: 1; width: 80%; align-items: center; max-width: 80%;" />
+            <ui:VisualElement name="ImageField" />
         </ui:VisualElement>
         <ui:VisualElement name="pane2" class="pane centered-pane large-pane">
             <ui:Label text="Rectangle Position Start" />
