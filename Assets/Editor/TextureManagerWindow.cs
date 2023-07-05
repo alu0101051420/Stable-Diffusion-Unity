@@ -18,7 +18,7 @@ public class TextureManagerWindow : EditorWindow
    }
 
    public void OnEnable() {
-    m_TextureManager = GameObject.FindGameObjectsWithTag("TextureManager").FirstOrDefault().GetComponent<TextureManager>();
+    m_TextureManager = GameObject.Find("TextureManager").GetComponent<TextureManager>();
    }
 
    public void CreateGUI() {
