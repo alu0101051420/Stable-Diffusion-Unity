@@ -14,7 +14,7 @@ public class TextureManagerWindow : EditorWindow
    [MenuItem("Textures/Texture Manager")]
    static void CreateMenu() {
         var window = GetWindow<TextureManagerWindow>();
-        window.titleContent = new GUIContent("Complex");
+        window.titleContent = new GUIContent("Texture Manager");
    }
 
    public void OnEnable() {

@@ -51,7 +51,8 @@ public class TextureManager : MonoBehaviour
                   ImageFloodFill.FillFromSides(texture, fillColor,
                       threshold: 0.075f, contour: 5f, bottomAlignImage: true);
                 }
-                targetObject.GetComponent<SpriteRenderer>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
+                targetObject.GetComponent<SpriteRenderer>().sprite = 
+                Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.one * 0.5f);
               }
               else
               {

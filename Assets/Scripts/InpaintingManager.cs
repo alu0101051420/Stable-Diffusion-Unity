@@ -110,6 +110,8 @@ public class InpaintingManager : MonoBehaviour
       },
             useCache: false,
             steps: steps,
+            width: originalTexture.width,
+            height: originalTexture.height,
             denoisingStrength: denoisingStrength,
             image: originalTexture.EncodeToPNG(),
             mask: rectangleTexture.EncodeToPNG()
@@ -157,6 +159,8 @@ public class InpaintingManager : MonoBehaviour
       },
       useCache: false,
       steps: steps,
+      width: originalTexture.width,
+      height: originalTexture.height,
       denoisingStrength: denoisingStrength,
       image: originalTexture.EncodeToPNG()
       ));

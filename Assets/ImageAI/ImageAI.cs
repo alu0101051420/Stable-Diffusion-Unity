@@ -11,7 +11,11 @@ public class ImageAI : MonoBehaviour
 
     public const string cacheFolder = "ImageAI";
 
-    public IEnumerator GetImage(string prompt, System.Action<Texture2D> callback, bool useCache = false, int width = 512, int height = 512, int steps = 50, int promptStrength = 7, int seed = -1, byte[] image = null, byte[] mask = null, string cacheKey = null, bool tiling = false, float denoisingStrength = 0.75f, string negativePrompt = null)
+    public IEnumerator GetImage(string prompt, System.Action<Texture2D> callback, 
+    bool useCache = false, int width = 512, int height = 512, int steps = 50, 
+    int promptStrength = 7, int seed = -1, byte[] image = null, byte[] mask = null,
+    string cacheKey = null, bool tiling = false, float denoisingStrength = 0.75f,
+    string negativePrompt = null)
     {
         ImageToImageAIParams aiParams = new ImageToImageAIParams()
         {
@@ -64,8 +68,7 @@ public class ImageAI : MonoBehaviour
             cache.Reserve(cacheKey);
 
             string apiMode = aiParams.initImages != null ? "img2img" : "txt2img";
-      Debug.Log(apiMode);
-      string apiUrl = "http://localhost:7860/sdapi/v1/" + apiMode;
+            string apiUrl = "http://localhost:7860/sdapi/v1/" + apiMode;
 
             UnityWebRequest www = UnityWebRequest.PostWwwForm(apiUrl, "");
             www.SetRequestHeader("Content-Type", "application/json");
