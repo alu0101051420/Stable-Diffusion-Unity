@@ -4,13 +4,13 @@ Welcome to the Unity AI Texture Generator repository! This project aims to explo
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Dependencies](#dependencies)
-- [Contributing](#contributing)
-- [License](#license)
+- [Unity AI Texture Generator](#unity-ai-texture-generator)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Features](#features)
+  - [Usage](#usage)
+  - [Dependencies](#dependencies)
+  - [License](#license)
 
 ## Introduction
 
@@ -24,48 +24,18 @@ This project serves as a developer tool that can be imported into your own Unity
 - Seamless integration with Unity: The tool seamlessly integrates into Unity's workflow, making it easy to apply AI-generated textures to your objects.
 - Experimentation and customization: Explore different settings and variations of AI-generated textures to achieve the desired visual effects in your project.
 
-## Getting Started
-
-To get started with the Unity AI Texture Generator in your own project, follow these steps:
-
-1. Clone or download this repository to your local machine.
-2. Open your Unity project.
-3. Import the Unity AI Texture Generator package into your project.
-4. Ensure that your project meets the minimum system requirements outlined in the [System Requirements](#system-requirements) section.
-5. Follow the instructions in the [Usage](#usage) section to start using the tool in your project.
-
 ## Usage
 
 To use the Unity AI Texture Generator in your project, follow these steps:
 
-1. Import the Unity AI Texture Generator package into your Unity project.
-2. Open the AI Texture Generator panel in Unity.
-3. Adjust the parameters and settings to customize the AI-generated texture.
-4. Apply the generated texture to your desired object in the scene.
-5. Fine-tune and experiment with different variations of the AI-generated texture to achieve the desired visual effect.
-6. Save and export the AI-generated textures for future use.
-
-For more detailed instructions and usage examples, please refer to the [User Guide](/docs/user-guide.md).
+1. Import the Unity AI Texture Generator package into your Unity project. You will need all scripts under `Assets/Editor/`, as well as `GlobalUse`, and `ImageAI` (these come from JPhilipp AIConnectors), and, under `Assets/Scripts`, you will need `InpaintingManager.cs`, `TextureManager.cs` and `TextureVersioningManager.cs`.
+2. In your scene, create an empty object and call it `TextureManager`. To this, add those last three scripts.
+3. Adjust the parameters and settings to customize the AI-generated texture and select the target object.
+4. Fine-tune and experiment with different variations of the AI-generated texture to achieve the desired visual effect.
 
 ## Dependencies
 
-The Unity AI Texture Generator has the following dependencies:
-
-- Unity 20XX.X.X or later: The tool is built for and compatible with Unity game development engine. Make sure you have the appropriate version of Unity installed.
-
-Please ensure that you have these dependencies installed before using the Unity AI Texture Generator.
-
-## Contributing
-
-Contributions to the Unity AI Texture Generator project are welcome! If you have ideas for improvements, bug fixes, or new features, please follow the guidelines below:
-
-1. Fork the repository and create a new branch.
-2. Make your changes and ensure that the project builds successfully.
-3. Write clear and concise commit messages.
-4. Submit a pull request, explaining the changes and their purpose.
-5. Be open to feedback and be prepared to make further changes if required.
-
-Please refer to the [Contribution Guidelines](/CONTRIBUTING.md) for more details.
+This project relies on [AIConnectors](https://github.com/JPhilipp/AIConnectors), a project that offers a series of connectors with the Automatic1111 API.
 
 ## License
 
