@@ -123,13 +123,11 @@ public class InpaintingManager : MonoBehaviour
   {
     if (prompt.Length != 0)
     {
-      // generate mask image, potentially save it
       Debug.Log($"Sending prompt: {prompt}");
 
       ImageAI imageAI = Misc.GetAddComponent<ImageAI>(gameObject);
 
       Texture2D originalTexture = getOriginalTexture(targetObject);
-
 
       StartCoroutine(imageAI.GetImage(prompt, (Texture2D texture) =>
       {
